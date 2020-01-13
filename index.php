@@ -1,5 +1,5 @@
 <?php
-include 'Poker.php';
+include 'src/Poker.php';
 
 $juego = new Poker();
 

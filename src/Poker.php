@@ -1,4 +1,7 @@
 <?php
+
+namespace Poker;
+
 Class Poker{
     
     protected $cards;
@@ -15,15 +18,18 @@ Class Poker{
             if($card>0 && $card<15){
                 $this->cards[] = $card;
             }else{
-                throw new Exception("{$card} No es una carta válida");
+                throw new \Exception("{$card} No es una carta válida");
             }
         }else{
-            throw new Exception("La mano puede tener máximo 7 cartas");
+            throw new \Exception("La mano puede tener máximo 7 cartas");
         }
     }
 
     public function getCards(){
         return $this->cards;
+    }
+    private function cleanCards(){
+        $this->cards = [];
     }
 
     public function isStraight( $cards = [] ){
@@ -49,8 +55,12 @@ Class Poker{
                     $consecutivas=0;
                 }
             }
-            if($consecutivas>=4) return true;
+            if($consecutivas>=4) {
+                $this->cleanCards();
+                return true;
+            }
         }
+        $this->cleanCards();
         return false;
     }
 
